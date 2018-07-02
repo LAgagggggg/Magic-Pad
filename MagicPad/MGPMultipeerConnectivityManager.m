@@ -18,10 +18,7 @@
  */
 @property (nonatomic,strong)MCSession * session;
 @property (nonatomic,strong)MCSession * sessionTo;
-/**
- *  可以接收，并处理用户请求连接的响应。没有回调，会弹出默认的提示框，并处理连接。
- */
-@property (nonatomic,strong)MCNearbyServiceAdvertiser * advertiser;
+
 
 @end
 
@@ -31,6 +28,7 @@
     self = [super init];
     if (self) {
         //获取设备名称
+        self.isConnected=NO;
         NSString * name = [UIDevice currentDevice].name;
         //用户
         _peerID = [[MCPeerID alloc]initWithDisplayName:name];
@@ -39,19 +37,19 @@
         //设置代理
         _session.delegate = self;
         //设置广播服务(发送方)
-//        _advertiser = [[MCAdvertiserAssistant alloc]initWithServiceType:@"type" discoveryInfo:nil session:_session];
-        _advertiser=[[MCNearbyServiceAdvertiser alloc]initWithPeer:_peerID discoveryInfo:nil serviceType:@"type"];
-        _advertiser.delegate=self;
+        _advertiser = [[MCAdvertiserAssistant alloc]initWithServiceType:@"type" discoveryInfo:nil session:_session];
+//        _advertiser=[[MCNearbyServiceAdvertiser alloc]initWithPeer:_peerID discoveryInfo:nil serviceType:@"type"];
+//        _advertiser.delegate=self;
         //开始广播
-        [_advertiser startAdvertisingPeer];
-//        [_advertiser start];
+//        [_advertiser startAdvertisingPeer];
+        [_advertiser start];
     }
     return self;
 }
 
-- (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(MCPeerID *)peerID withContext:(NSData *)context invitationHandler:(void (^)(BOOL, MCSession * _Nullable))invitationHandler{
-    NSLog(@"hhhhh");
-}
+//- (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(MCPeerID *)peerID withContext:(NSData *)context invitationHandler:(void (^)(BOOL, MCSession * _Nullable))invitationHandler{
+//    NSLog(@"hhhhh");
+//}
 
 #pragma mark MCSession代理方法
 /**
@@ -63,11 +61,23 @@
  */
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state{
     //判断如果连接
-    NSLog(@"1111111");
+    
     if (state == MCSessionStateConnected) {
         //保存这个连接
+        self.isConnected=YES;
         self.sessionTo=session;
+        [self.advertiser stop];
     }
+    else{
+        self.isConnected=NO;
+        [self.advertiser start];
+    }
+}
+
+- (void)disconnect{
+    [self.sessionTo disconnect];
+    self.isConnected=NO;
+    [self.advertiser start];
 }
 /**
  *  接收到消息

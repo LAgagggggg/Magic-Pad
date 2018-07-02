@@ -16,15 +16,19 @@
 @property (nonatomic) UIView * traceBall;
 @property BOOL isConnected;
 @property MGPMultipeerConnectivityManager * manager;
+
 @end
 
 @implementation MainViewController
 float menuPopedY;
 float menuUnpopedY;
 float animationDuration=0.8;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.manager=[[MGPMultipeerConnectivityManager alloc]init];
+    self.isConnected=NO;
+    [self addObserver:self forKeyPath:@"manager.isConnected" options:NSKeyValueObservingOptionNew context:nil];
     //设置弹出菜单
     self.isMenuPoped=NO;
     menuPopedY=[UIScreen mainScreen].bounds.size.height-self.menuView.frame.size.height;
@@ -41,6 +45,27 @@ float animationDuration=0.8;
     UIPanGestureRecognizer * pan=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan:)];
     pan.delegate=self;
     [self.touchView addGestureRecognizer:pan];
+}
+
+//连接状态变化
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"manager.isConnected"]&&object==self) {
+        self.isConnected=self.manager.isConnected;
+        [self performSelectorOnMainThread:@selector(connectHint) withObject:nil waitUntilDone:NO];
+    }
+}
+
+-(void)connectHint{
+    if (self.isConnected) {
+        self.unconnectedView.hidden=YES;
+    }
+    else{
+        self.unconnectedView.hidden=NO;
+    }
+}
+
+- (IBAction)disconnect:(id)sender {
+    [self.manager disconnect];
 }
 
 -(void)pan:(UIPanGestureRecognizer *)pan{
@@ -118,5 +143,4 @@ float animationDuration=0.8;
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
     return UIInterfaceOrientationLandscapeRight;
 }
-
 @end

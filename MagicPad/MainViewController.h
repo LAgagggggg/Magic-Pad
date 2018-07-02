@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MGPMultipeerConnectivityManager.h"
+#import <MultipeerConnectivity/MultipeerConnectivity.h>
 
 @interface MainViewController : UIViewController <UIGestureRecognizerDelegate>
 

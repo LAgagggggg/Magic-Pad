@@ -9,5 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 
-@interface MGPMultipeerConnectivityManager : NSObject <MCSessionDelegate,MCBrowserViewControllerDelegate,MCNearbyServiceBrowserDelegate,MCNearbyServiceAdvertiserDelegate>
+@interface MGPMultipeerConnectivityManager : NSObject <MCSessionDelegate>
+
+@property (nonatomic,strong)MCAdvertiserAssistant * advertiser;
+@property BOOL isConnected;
+
+-(void)disconnect;
+
 @end
+
+

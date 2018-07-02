@@ -23,8 +23,23 @@
                                 <subviews>
                                     <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iis-Ls-bas">
                                         <rect key="frame" x="0.0" y="647" width="375" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sv-uz-gmm">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="Pnd-Dz-ClQ"/>
+                                                </constraints>
+                                                <state key="normal" image="noConnection"/>
+                                                <connections>
+                                                    <action selector="disconnect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="faf-HO-u95"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <constraints>
+                                            <constraint firstItem="5sv-uz-gmm" firstAttribute="leading" secondItem="Iis-Ls-bas" secondAttribute="leading" id="5to-ej-OnU"/>
+                                            <constraint firstItem="5sv-uz-gmm" firstAttribute="height" secondItem="Iis-Ls-bas" secondAttribute="height" id="H5p-gP-vXq"/>
+                                            <constraint firstItem="5sv-uz-gmm" firstAttribute="top" secondItem="Iis-Ls-bas" secondAttribute="top" id="b3S-wT-AWP"/>
                                             <constraint firstAttribute="height" constant="50" id="xGB-As-hpo"/>
                                         </constraints>
                                     </view>
