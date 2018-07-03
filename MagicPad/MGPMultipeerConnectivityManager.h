@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 
-@interface MGPMultipeerConnectivityManager : NSObject <MCSessionDelegate>
+@interface MGPMultipeerConnectivityManager : NSObject <MCSessionDelegate,NSStreamDelegate>
 
 @property (nonatomic,strong)MCAdvertiserAssistant * advertiser;
 @property BOOL isConnected;
 
 -(void)disconnect;
+-(void)sendData:(NSData *)data;
 
 @end
 

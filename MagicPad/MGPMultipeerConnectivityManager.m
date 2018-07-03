@@ -9,17 +9,12 @@
 #import "MGPMultipeerConnectivityManager.h"
 
 @interface MGPMultipeerConnectivityManager()
-/**
- *  表示为一个用户，亦可认为是当前设备
- */
-@property (nonatomic,strong)MCPeerID * peerID;
-/**
- *  数据流，启用和管理Multipeer连接会话中的所有人之间的沟通。 通过Sesion，给别人发送数据。类似于Socket
- */
-@property (nonatomic,strong)MCSession * session;
-@property (nonatomic,strong)MCSession * sessionTo;
 
-
+@property (nonatomic,strong) MCPeerID * peerID;
+@property (nonatomic,strong) MCSession * session;
+@property (nonatomic,strong) MCSession * sessionTo;
+@property (nonatomic,strong) NSOutputStream * stream;
+@property BOOL isStreaming;
 @end
 
 @implementation MGPMultipeerConnectivityManager
@@ -29,6 +24,7 @@
     if (self) {
         //获取设备名称
         self.isConnected=NO;
+        self.isStreaming=NO;
         NSString * name = [UIDevice currentDevice].name;
         //用户
         _peerID = [[MCPeerID alloc]initWithDisplayName:name];
@@ -38,18 +34,10 @@
         _session.delegate = self;
         //设置广播服务(发送方)
         _advertiser = [[MCAdvertiserAssistant alloc]initWithServiceType:@"type" discoveryInfo:nil session:_session];
-//        _advertiser=[[MCNearbyServiceAdvertiser alloc]initWithPeer:_peerID discoveryInfo:nil serviceType:@"type"];
-//        _advertiser.delegate=self;
-        //开始广播
-//        [_advertiser startAdvertisingPeer];
         [_advertiser start];
     }
     return self;
 }
-
-//- (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(MCPeerID *)peerID withContext:(NSData *)context invitationHandler:(void (^)(BOOL, MCSession * _Nullable))invitationHandler{
-//    NSLog(@"hhhhh");
-//}
 
 #pragma mark MCSession代理方法
 /**
@@ -60,8 +48,6 @@
  *  @param state   连接状态
  */
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state{
-    //判断如果连接
-    
     if (state == MCSessionStateConnected) {
         //保存这个连接
         self.isConnected=YES;
@@ -74,10 +60,25 @@
     }
 }
 
+- (void)sendData:(NSData *)data{
+    if (self.isConnected) {
+//        [self.session sendData:data toPeers:self.session.connectedPeers withMode:MCSessionSendDataUnreliable error:nil];
+        if(_stream==nil||!self.isStreaming){
+            self.stream=[self.session startStreamWithName:@"remoteControlStream" toPeer:self.session.connectedPeers[0] error:nil];
+            self.stream.delegate=self;
+            [self.stream scheduleInRunLoop:NSRunLoop.mainRunLoop forMode:NSDefaultRunLoopMode];
+            [self.stream open];
+            self.isStreaming=YES;
+        }
+        [self.stream write:data.bytes maxLength:data.length];
+    }
+}
+
 - (void)disconnect{
     [self.sessionTo disconnect];
     self.isConnected=NO;
     [self.advertiser start];
+    [self.stream close];
 }
 /**
  *  接收到消息

@@ -70,6 +70,8 @@ float animationDuration=0.8;
 
 -(void)pan:(UIPanGestureRecognizer *)pan{
     CGPoint trans = [pan translationInView:pan.view];
+    NSData * data=[NSData dataWithBytes:&trans length:sizeof(trans)];
+    [self.manager sendData:data];
     CGRect frame=self.traceBall.frame;
     frame.origin.x+=trans.x;
     frame.origin.y+=trans.y;
