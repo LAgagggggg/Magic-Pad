@@ -8,6 +8,11 @@
 
 #import "MainViewController.h"
 
+struct dataStruct{
+    CGPoint trans;
+    BOOL click;
+};
+
 @interface MainViewController ()
 @property (strong, nonatomic) IBOutlet UIView *unconnectedView;
 @property (strong, nonatomic) IBOutlet UIView *menuView;
@@ -44,7 +49,10 @@ float animationDuration=0.8;
     [self.touchView addSubview:self.traceBall];
     UIPanGestureRecognizer * pan=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan:)];
     pan.delegate=self;
+    UITapGestureRecognizer * tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
+    tap.delegate=self;
     [self.touchView addGestureRecognizer:pan];
+    [self.touchView addGestureRecognizer:tap];
 }
 
 //连接状态变化
@@ -70,13 +78,20 @@ float animationDuration=0.8;
 
 -(void)pan:(UIPanGestureRecognizer *)pan{
     CGPoint trans = [pan translationInView:pan.view];
-    NSData * data=[NSData dataWithBytes:&trans length:sizeof(trans)];
+    struct dataStruct dataS={trans,NO};
+    NSData * data=[NSData dataWithBytes:&dataS length:sizeof(dataS)];
     [self.manager sendData:data];
     CGRect frame=self.traceBall.frame;
     frame.origin.x+=trans.x;
     frame.origin.y+=trans.y;
     self.traceBall.frame=frame;
     [pan setTranslation:CGPointZero inView:pan.view ];
+}
+
+-(void)tap{
+    struct dataStruct dataS={CGPointMake(0, 0),YES};
+    NSData * data=[NSData dataWithBytes:&dataS length:sizeof(dataS)];
+    [self.manager sendData:data];
 }
 
 //弹出菜单

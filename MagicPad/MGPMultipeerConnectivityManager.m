@@ -62,15 +62,15 @@
 
 - (void)sendData:(NSData *)data{
     if (self.isConnected) {
-//        [self.session sendData:data toPeers:self.session.connectedPeers withMode:MCSessionSendDataUnreliable error:nil];
-        if(_stream==nil||!self.isStreaming){
-            self.stream=[self.session startStreamWithName:@"remoteControlStream" toPeer:self.session.connectedPeers[0] error:nil];
-            self.stream.delegate=self;
-            [self.stream scheduleInRunLoop:NSRunLoop.mainRunLoop forMode:NSDefaultRunLoopMode];
-            [self.stream open];
-            self.isStreaming=YES;
-        }
-        [self.stream write:data.bytes maxLength:data.length];
+        [self.session sendData:data toPeers:self.session.connectedPeers withMode:MCSessionSendDataReliable error:nil];
+//        if(_stream==nil||!self.isStreaming){
+//            self.stream=[self.session startStreamWithName:@"remoteControlStream" toPeer:self.session.connectedPeers[0] error:nil];
+//            self.stream.delegate=self;
+//            [self.stream scheduleInRunLoop:NSRunLoop.mainRunLoop forMode:NSDefaultRunLoopMode];
+//            [self.stream open];
+//            self.isStreaming=YES;
+//        }
+//        [self.stream write:data.bytes maxLength:data.length];
     }
 }
 
@@ -78,7 +78,7 @@
     [self.sessionTo disconnect];
     self.isConnected=NO;
     [self.advertiser start];
-    [self.stream close];
+//    [self.stream close];
 }
 /**
  *  接收到消息
