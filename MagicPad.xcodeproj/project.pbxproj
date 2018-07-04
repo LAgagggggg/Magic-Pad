@@ -14,6 +14,8 @@
 		08260CD820E9F07400359834 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08260CD620E9F07400359834 /* LaunchScreen.storyboard */; };
 		08260CDB20E9F07400359834 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08260CDA20E9F07400359834 /* main.m */; };
 		08260CE320EA192500359834 /* MGPMultipeerConnectivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 08260CE220EA192500359834 /* MGPMultipeerConnectivityManager.m */; };
+		08B1676D20EC83E3007C3D7C /* MGPAdjustView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08B1676C20EC83E3007C3D7C /* MGPAdjustView.m */; };
+		DA6EECC28ABC3C940089CB9C /* libPods-MagicPad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CDA0A6B18E7FDA85F3EA9D /* libPods-MagicPad.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,11 @@
 		08260CDA20E9F07400359834 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		08260CE120EA192500359834 /* MGPMultipeerConnectivityManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGPMultipeerConnectivityManager.h; sourceTree = "<group>"; };
 		08260CE220EA192500359834 /* MGPMultipeerConnectivityManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGPMultipeerConnectivityManager.m; sourceTree = "<group>"; };
+		08B1676B20EC83E3007C3D7C /* MGPAdjustView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGPAdjustView.h; sourceTree = "<group>"; };
+		08B1676C20EC83E3007C3D7C /* MGPAdjustView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGPAdjustView.m; sourceTree = "<group>"; };
+		8D4C5E3A1972C0D31FC3CFA9 /* Pods-MagicPad.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicPad.release.xcconfig"; path = "Pods/Target Support Files/Pods-MagicPad/Pods-MagicPad.release.xcconfig"; sourceTree = "<group>"; };
+		C2CDA0A6B18E7FDA85F3EA9D /* libPods-MagicPad.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MagicPad.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DADA992B2A588A8B9714EFB5 /* Pods-MagicPad.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicPad.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MagicPad/Pods-MagicPad.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA6EECC28ABC3C940089CB9C /* libPods-MagicPad.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +55,8 @@
 			children = (
 				08260CCA20E9F07100359834 /* MagicPad */,
 				08260CC920E9F07100359834 /* Products */,
+				EB805474F1AA07A9C6CA272D /* Pods */,
+				199112D4A4D53F64CAA103A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -65,8 +75,8 @@
 				08260CCC20E9F07100359834 /* AppDelegate.m */,
 				08260CCE20E9F07100359834 /* MainViewController.h */,
 				08260CCF20E9F07100359834 /* MainViewController.m */,
-				08260CE120EA192500359834 /* MGPMultipeerConnectivityManager.h */,
-				08260CE220EA192500359834 /* MGPMultipeerConnectivityManager.m */,
+				08B1676F20EC8419007C3D7C /* Utilities */,
+				08B1676E20EC83EC007C3D7C /* Views */,
 				08260CD120E9F07100359834 /* Main.storyboard */,
 				08260CD420E9F07400359834 /* Assets.xcassets */,
 				08260CD620E9F07400359834 /* LaunchScreen.storyboard */,
@@ -76,6 +86,41 @@
 			path = MagicPad;
 			sourceTree = "<group>";
 		};
+		08B1676E20EC83EC007C3D7C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				08B1676B20EC83E3007C3D7C /* MGPAdjustView.h */,
+				08B1676C20EC83E3007C3D7C /* MGPAdjustView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		08B1676F20EC8419007C3D7C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				08260CE120EA192500359834 /* MGPMultipeerConnectivityManager.h */,
+				08260CE220EA192500359834 /* MGPMultipeerConnectivityManager.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		199112D4A4D53F64CAA103A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C2CDA0A6B18E7FDA85F3EA9D /* libPods-MagicPad.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EB805474F1AA07A9C6CA272D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DADA992B2A588A8B9714EFB5 /* Pods-MagicPad.debug.xcconfig */,
+				8D4C5E3A1972C0D31FC3CFA9 /* Pods-MagicPad.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,6 +128,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 08260CDE20E9F07400359834 /* Build configuration list for PBXNativeTarget "MagicPad" */;
 			buildPhases = (
+				8BF9BAE2249ABE122DBB176F /* [CP] Check Pods Manifest.lock */,
 				08260CC420E9F07100359834 /* Sources */,
 				08260CC520E9F07100359834 /* Frameworks */,
 				08260CC620E9F07100359834 /* Resources */,
@@ -141,6 +187,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8BF9BAE2249ABE122DBB176F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MagicPad-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		08260CC420E9F07100359834 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -150,6 +217,7 @@
 				08260CDB20E9F07400359834 /* main.m in Sources */,
 				08260CCD20E9F07100359834 /* AppDelegate.m in Sources */,
 				08260CE320EA192500359834 /* MGPMultipeerConnectivityManager.m in Sources */,
+				08B1676D20EC83E3007C3D7C /* MGPAdjustView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +355,7 @@
 		};
 		08260CDF20E9F07400359834 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DADA992B2A588A8B9714EFB5 /* Pods-MagicPad.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -305,6 +374,7 @@
 		};
 		08260CE020E9F07400359834 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D4C5E3A1972C0D31FC3CFA9 /* Pods-MagicPad.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

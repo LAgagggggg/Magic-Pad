@@ -21,28 +21,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l6j-dV-pIr">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iis-Ls-bas">
-                                        <rect key="frame" x="0.0" y="647" width="375" height="50"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sv-uz-gmm">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="Pnd-Dz-ClQ"/>
-                                                </constraints>
-                                                <state key="normal" image="noConnection"/>
-                                                <connections>
-                                                    <action selector="disconnect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="faf-HO-u95"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <constraints>
-                                            <constraint firstItem="5sv-uz-gmm" firstAttribute="leading" secondItem="Iis-Ls-bas" secondAttribute="leading" id="5to-ej-OnU"/>
-                                            <constraint firstItem="5sv-uz-gmm" firstAttribute="height" secondItem="Iis-Ls-bas" secondAttribute="height" id="H5p-gP-vXq"/>
-                                            <constraint firstItem="5sv-uz-gmm" firstAttribute="top" secondItem="Iis-Ls-bas" secondAttribute="top" id="b3S-wT-AWP"/>
-                                            <constraint firstAttribute="height" constant="50" id="xGB-As-hpo"/>
-                                        </constraints>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xab-fg-6QJ">
                                         <rect key="frame" x="157" y="283" width="60" height="80"/>
                                         <subviews>
@@ -79,9 +57,52 @@
                                 <constraints>
                                     <constraint firstItem="xab-fg-6QJ" firstAttribute="centerY" secondItem="l6j-dV-pIr" secondAttribute="centerY" id="4a1-mr-4Ju"/>
                                     <constraint firstItem="xab-fg-6QJ" firstAttribute="centerX" secondItem="l6j-dV-pIr" secondAttribute="centerX" id="PgG-gK-Ape"/>
-                                    <constraint firstAttribute="trailing" secondItem="Iis-Ls-bas" secondAttribute="trailing" id="Wrs-ov-YVU"/>
-                                    <constraint firstItem="Iis-Ls-bas" firstAttribute="leading" secondItem="l6j-dV-pIr" secondAttribute="leading" id="YWD-dA-bk7"/>
-                                    <constraint firstAttribute="bottom" secondItem="Iis-Ls-bas" secondAttribute="bottom" constant="-50" id="qlQ-HQ-MZ5"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iis-Ls-bas">
+                                <rect key="frame" x="165" y="567" width="310" height="80"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sv-uz-gmm">
+                                        <rect key="frame" x="15" y="15" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="Pnd-Dz-ClQ"/>
+                                        </constraints>
+                                        <state key="normal" image="noConnection"/>
+                                        <connections>
+                                            <action selector="disconnect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="faf-HO-u95"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbA-gE-t9o">
+                                        <rect key="frame" x="80" y="15" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="kcM-Hv-Lkz"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="调节器"/>
+                                        <connections>
+                                            <action selector="popAdjustView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ov8-A3-7wq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fS-fN-bw3">
+                                        <rect key="frame" x="145" y="15" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="vqw-9l-OUz"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="设置"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstItem="6fS-fN-bw3" firstAttribute="top" secondItem="Iis-Ls-bas" secondAttribute="top" constant="15" id="3fd-Nd-cTS"/>
+                                    <constraint firstItem="5sv-uz-gmm" firstAttribute="leading" secondItem="Iis-Ls-bas" secondAttribute="leading" constant="15" id="9Uf-jF-cBN"/>
+                                    <constraint firstItem="5sv-uz-gmm" firstAttribute="top" secondItem="Iis-Ls-bas" secondAttribute="top" constant="15" id="9e0-ZX-auN"/>
+                                    <constraint firstAttribute="bottom" secondItem="5sv-uz-gmm" secondAttribute="bottom" constant="15" id="I7V-BX-dsy"/>
+                                    <constraint firstAttribute="bottom" secondItem="GbA-gE-t9o" secondAttribute="bottom" constant="15" id="M94-O9-iJ3"/>
+                                    <constraint firstItem="6fS-fN-bw3" firstAttribute="leading" secondItem="GbA-gE-t9o" secondAttribute="trailing" constant="15" id="Ob7-Aq-sqF"/>
+                                    <constraint firstItem="GbA-gE-t9o" firstAttribute="top" secondItem="Iis-Ls-bas" secondAttribute="top" constant="15" id="TVY-jW-b9q"/>
+                                    <constraint firstItem="GbA-gE-t9o" firstAttribute="leading" secondItem="5sv-uz-gmm" secondAttribute="trailing" constant="15" id="VCS-dQ-A5M"/>
+                                    <constraint firstAttribute="trailing" secondItem="6fS-fN-bw3" secondAttribute="trailing" constant="115" id="uQI-mm-aPt"/>
+                                    <constraint firstAttribute="bottom" secondItem="6fS-fN-bw3" secondAttribute="bottom" constant="15" id="wIg-nQ-Rje"/>
+                                    <constraint firstAttribute="height" constant="80" id="xGB-As-hpo"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -90,6 +111,8 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="l6j-dV-pIr" secondAttribute="bottom" id="00h-hQ-3eK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="l6j-dV-pIr" secondAttribute="trailing" id="0wT-uc-LZm"/>
                             <constraint firstItem="l6j-dV-pIr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="4H5-ZF-ce3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Iis-Ls-bas" secondAttribute="trailing" constant="-100" id="FHf-U2-u3u"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Iis-Ls-bas" secondAttribute="bottom" constant="20" id="Tkc-yz-RYj"/>
                             <constraint firstItem="l6j-dV-pIr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ksY-Ib-RON"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -106,5 +129,7 @@
     </scenes>
     <resources>
         <image name="noConnection" width="200" height="200"/>
+        <image name="设置" width="200" height="200"/>
+        <image name="调节器" width="200" height="200"/>
     </resources>
 </document>
